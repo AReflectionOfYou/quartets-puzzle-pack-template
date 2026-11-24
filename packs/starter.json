@@ -1,0 +1,33 @@
+{
+  "formatVersion": 1,
+  "title": "My First Pack",
+  "author": "Your name here",
+  "puzzles": [
+    {
+      "title": "Warm-Up",
+      "groups": [
+        {
+          "name": "Shades of blue",
+          "voice": "bass",
+          "words": ["Navy", "Teal", "Azure", "Cobalt"]
+        },
+        {
+          "name": "Baby animals",
+          "voice": "tenor",
+          "words": ["Kitten", "Puppy", "Calf", "Foal"]
+        },
+        {
+          "name": "Musical instruments",
+          "voice": "alto",
+          "words": ["Flute", "Drum", "Harp", "Cello"]
+        },
+        {
+          "name": "___fish",
+          "voice": "soprano",
+          "words": ["Gold", "Cat", "Sword", "Star"],
+          "details": "Goldfish, catfish, swordfish and starfish."
+        }
+      ]
+    }
+  ]
+}

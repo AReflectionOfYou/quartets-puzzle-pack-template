@@ -1,0 +1,12 @@
+{
+  "name": "quartets-puzzle-pack",
+  "private": true,
+  "description": "Puzzle packs for Quartets of You, with a check that validates them.",
+  "license": "MIT",
+  "scripts": {
+    "validate": "node scripts/validate-packs.js"
+  },
+  "devDependencies": {
+    "ajv": "8.17.1"
+  }
+}

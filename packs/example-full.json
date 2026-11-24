@@ -1,0 +1,98 @@
+{
+  "formatVersion": 1,
+  "title": "Animals, Colors and Music",
+  "author": "The Quartets of You project",
+  "description": "Three sample puzzles that use every field in the format. Copy one and make it your own.",
+  "license": "CC BY 4.0",
+  "puzzles": [
+    {
+      "title": "Animal Kingdom",
+      "subtitle": "Not every animal here is what it seems.",
+      "winMessage": "The whole menagerie, sorted. Well done!",
+      "groups": [
+        {
+          "name": "Big cats",
+          "voice": "bass",
+          "words": ["Lion", "Tiger", "Leopard", "Jaguar"]
+        },
+        {
+          "name": "Names for animal groups",
+          "voice": "tenor",
+          "words": ["Pride", "Herd", "Flock", "Pod"],
+          "details": "A pride of lions, a herd of cattle, a flock of sheep and a pod of whales."
+        },
+        {
+          "name": "Things that bark",
+          "voice": "alto",
+          "words": ["Dog", "Seal", "Fox", "Tree"],
+          "details": "Seals and foxes bark too. A tree's bark is a different word that happens to sound the same."
+        },
+        {
+          "name": "___fly",
+          "voice": "soprano",
+          "words": ["Butter", "Dragon", "Fire", "Horse"],
+          "details": "Butterfly, dragonfly, firefly and horsefly. Dragon and Horse were the decoys."
+        }
+      ]
+    },
+    {
+      "title": "Color Wheel",
+      "subtitle": "Some of these colors lead double lives.",
+      "groups": [
+        {
+          "name": "Colors of the rainbow",
+          "voice": "bass",
+          "words": ["Red", "Orange", "Indigo", "Violet"]
+        },
+        {
+          "name": "Shades of green",
+          "voice": "tenor",
+          "words": ["Lime", "Olive", "Mint", "Emerald"]
+        },
+        {
+          "name": "___print",
+          "voice": "alto",
+          "words": ["Blue", "Finger", "Foot", "News"],
+          "details": "Blueprint, fingerprint, footprint and newsprint. Blue is in the rainbow too, but only Blue makes a print."
+        },
+        {
+          "name": "Colors that are also first names",
+          "voice": "soprano",
+          "words": ["Rose", "Amber", "Ruby", "Hazel"],
+          "details": "Violet and Olive are names as well, which is what makes this one tricky."
+        }
+      ]
+    },
+    {
+      "title": "Music Room",
+      "subtitle": "Five wrong notes allowed in this one.",
+      "maxMistakes": 5,
+      "winMessage": "Encore!",
+      "groups": [
+        {
+          "name": "Choir voices",
+          "voice": "tenor",
+          "words": ["Soprano", "Alto", "Tenor", "Bass"],
+          "details": "The same four voices that name the quartets in this game."
+        },
+        {
+          "name": "String instruments",
+          "voice": "bass",
+          "words": ["Violin", "Guitar", "Banjo", "Harp"]
+        },
+        {
+          "name": "Things that can be flat",
+          "voice": "soprano",
+          "words": ["Tire", "Feet", "Soda", "Battery"],
+          "details": "A flat tire, flat feet, flat soda and a flat battery. In music, a note can be flat too."
+        },
+        {
+          "name": "___ band",
+          "voice": "alto",
+          "words": ["Rubber", "Boy", "Brass", "Wrist"],
+          "details": "A rubber band, a boy band, a brass band and a wristband. Brass could pass for an instrument family."
+        }
+      ]
+    }
+  ]
+}

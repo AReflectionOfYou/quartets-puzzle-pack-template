@@ -1,0 +1,241 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AReflectionOfYou/QuartetsOfYouGame/schema/quartets-pack.schema.json",
+  "$comment": "Format version 1. The original lives at https://github.com/AReflectionOfYou/QuartetsOfYouGame/blob/main/schema/quartets-pack.schema.json; if this is a copy, check there for updates. MIT licensed, (c) 2026 Michael A. Heroux.",
+  "title": "Quartets of You puzzle pack",
+  "description": "A Quartets of You file: either a pack (a \"puzzles\" list) or a single puzzle (a \"groups\" list at the top level). Unknown extra fields are allowed and ignored. The game also checks two rules this schema can't express: all sixteen words in a puzzle are different, and so are its four quartet names (both ignoring case and surrounding spaces). See docs/PUZZLE_FORMAT.md.",
+  "type": "object",
+  "properties": {
+    "formatVersion": {
+      "description": "Version of this file format. Missing means 1.",
+      "type": "integer",
+      "minimum": 1
+    }
+  },
+  "oneOf": [
+    {
+      "$ref": "#/$defs/pack",
+      "not": {
+        "required": [
+          "groups"
+        ]
+      }
+    },
+    {
+      "$ref": "#/$defs/puzzle",
+      "not": {
+        "required": [
+          "puzzles"
+        ]
+      }
+    }
+  ],
+  "$defs": {
+    "text": {
+      "type": "string",
+      "pattern": "\\S"
+    },
+    "pack": {
+      "type": "object",
+      "required": [
+        "puzzles"
+      ],
+      "properties": {
+        "title": {
+          "description": "The pack's name.",
+          "type": "string"
+        },
+        "author": {
+          "description": "Who made the pack.",
+          "type": "string"
+        },
+        "description": {
+          "description": "A sentence or two about the pack.",
+          "type": "string"
+        },
+        "license": {
+          "description": "How others may use the pack's puzzles, for example \"CC BY 4.0\". The pack's author owns its content.",
+          "type": "string"
+        },
+        "puzzles": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/puzzle"
+          }
+        }
+      }
+    },
+    "puzzle": {
+      "type": "object",
+      "required": [
+        "groups"
+      ],
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "winMessage": {
+          "description": "Shown when every quartet is found.",
+          "type": "string"
+        },
+        "maxMistakes": {
+          "description": "Wrong guesses (bum notes) allowed. Missing means 4.",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        },
+        "backgroundImage": {
+          "description": "Image address. A relative path is resolved against the pack file's address.",
+          "type": "string"
+        },
+        "groups": {
+          "description": "Exactly four quartets.",
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "items": {
+            "$ref": "#/$defs/group"
+          }
+        }
+      },
+      "if": {
+        "properties": {
+          "groups": {
+            "type": "array",
+            "contains": {
+              "type": "object",
+              "required": [
+                "voice"
+              ]
+            }
+          }
+        },
+        "required": [
+          "groups"
+        ]
+      },
+      "then": {
+        "description": "If any quartet names its voice, all four do, and each voice is used once.",
+        "properties": {
+          "groups": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "voice"
+              ]
+            },
+            "allOf": [
+              {
+                "contains": {
+                  "properties": {
+                    "voice": {
+                      "$ref": "#/$defs/bass"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              {
+                "contains": {
+                  "properties": {
+                    "voice": {
+                      "$ref": "#/$defs/tenor"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              {
+                "contains": {
+                  "properties": {
+                    "voice": {
+                      "$ref": "#/$defs/alto"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              {
+                "contains": {
+                  "properties": {
+                    "voice": {
+                      "$ref": "#/$defs/soprano"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "group": {
+      "type": "object",
+      "required": [
+        "name",
+        "words"
+      ],
+      "properties": {
+        "name": {
+          "description": "What the four words share. Shown when solved.",
+          "$ref": "#/$defs/text"
+        },
+        "voice": {
+          "description": "Difficulty, from bass (easiest) to soprano (hardest). Case is ignored.",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/bass"
+            },
+            {
+              "$ref": "#/$defs/tenor"
+            },
+            {
+              "$ref": "#/$defs/alto"
+            },
+            {
+              "$ref": "#/$defs/soprano"
+            }
+          ]
+        },
+        "words": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "items": {
+            "$ref": "#/$defs/text"
+          }
+        },
+        "details": {
+          "description": "Optional backstory, shown when the quartet is solved.",
+          "type": "string"
+        }
+      }
+    },
+    "bass": {
+      "type": "string",
+      "pattern": "^[Bb][Aa][Ss][Ss]$"
+    },
+    "tenor": {
+      "type": "string",
+      "pattern": "^[Tt][Ee][Nn][Oo][Rr]$"
+    },
+    "alto": {
+      "type": "string",
+      "pattern": "^[Aa][Ll][Tt][Oo]$"
+    },
+    "soprano": {
+      "type": "string",
+      "pattern": "^[Ss][Oo][Pp][Rr][Aa][Nn][Oo]$"
+    }
+  }
+}
